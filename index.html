@@ -7,12 +7,14 @@
   <title>QuickCalc</title>
 
   <style>
+    /* --- RESET ALL DEFAULT SPACING --- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* --- BODY STYLING --- */
     body {
       background-image: url("https://cdn.wallpapersafari.com/56/61/p8bDwL.jpg");
       background-size: cover;
@@ -24,12 +26,46 @@
       font-family: Arial, sans-serif;
     }
 
+    /* --- HEADER BUTTON (fixed at top of page) --- */
+    .button10 {
+      position: fixed;
+      /* sticks to top of page */
+      top: 3px;
+      /* space from very top */
+      left: 50%;
+      /* start from center */
+      transform: translateX(-50%);
+      /* truly center it */
+      width: calc(100% - 40px);
+      /* full width with 20px space on each side */
+      border: 2px dashed white;
+      border-radius: 10px;
+      background-color: rgb(36, 24, 34);
+      color: white;
+      font-size: 150%;
+      font-weight: bolder;
+      padding: 15px 30px;
+      cursor: pointer;
+      text-align: center;
+      z-index: 999;
+      /* stays on top of everything */
+    }
+
+    /* --- HEADER BUTTON HOVER EFFECT --- */
+    .button10:hover {
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    }
+
+    /* --- MAIN CONTAINER (centers the calculator) --- */
     .container {
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-top: 80px;
+      /* pushes calculator below the fixed header */
     }
 
+    /* --- CALCULATOR BOX --- */
     .calculator-container {
       display: flex;
       flex-direction: column;
@@ -40,24 +76,7 @@
       background-color: rgb(17, 15, 19);
     }
 
-    .button10 {
-      border: 2px dashed white;
-      border-radius: 30px;
-      background-color: rgb(36, 24, 34);
-      color: white;
-      font-size: 150%;
-      font-weight: bolder;
-      padding: 15px 30px;
-      margin: 0 0 20px 0;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-      text-align: center;
-    }
-
-    .button10:hover {
-      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
-    }
-
+    /* --- CALCULATOR DISPLAY SCREEN --- */
     #display {
       width: 320px;
       height: 80px;
@@ -67,18 +86,20 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
+      /* numbers align to the right */
       padding: 10px;
       margin-bottom: 15px;
       border-radius: 10px;
-      box-sizing: border-box;
     }
 
+    /* --- BUTTON ROW --- */
     .row {
       display: flex;
       justify-content: center;
       margin-bottom: 10px;
     }
 
+    /* --- NUMBER BUTTONS --- */
     .button1 {
       border: none;
       border-radius: 50%;
@@ -95,6 +116,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     }
 
+    /* --- OPERATOR BUTTONS (+, -, *, /) --- */
     .button2 {
       border: none;
       border-radius: 50%;
@@ -110,23 +132,35 @@
       justify-content: center;
     }
 
+    /* --- CLEAR BUTTON --- */
     .clear-btn {
       width: 320px;
+      /* matches display width */
       border-radius: 10px;
       font-size: 25px;
       background-color: rgb(97, 97, 104);
       margin-top: 5px;
     }
 
+    /* --- BUTTON PRESS AND HOVER EFFECTS --- */
     button:active {
       transform: scale(0.95);
+      /* shrinks slightly when clicked */
     }
 
     button:hover {
       box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
     }
 
+    /* --- SMALL PHONES (up to 360px) --- */
     @media (max-width: 360px) {
+      .button10 {
+        font-size: 4vw;
+        padding: 12px 20px;
+        width: calc(100% - 20px);
+        /* smaller side spaces on tiny screens */
+      }
+
       #display {
         width: 90%;
         font-size: 6vw;
@@ -143,14 +177,16 @@
         width: 90%;
         font-size: 4vw;
       }
-
-      .button10 {
-        font-size: 4vw;
-        padding: 12px 20px;
-      }
     }
 
+    /* --- MEDIUM PHONES AND TABLETS (361px - 768px) --- */
     @media (min-width: 361px) and (max-width: 768px) {
+      .button10 {
+        font-size: 5vw;
+        padding: 15px 25px;
+        width: calc(100% - 30px);
+      }
+
       #display {
         width: 90%;
         font-size: 8vw;
@@ -167,14 +203,17 @@
         width: 90%;
         font-size: 20px;
       }
-
-      .button10 {
-        font-size: 5vw;
-        padding: 15px 25px;
-      }
     }
 
+    /* --- LARGE SCREENS (769px and above) --- */
     @media (min-width: 769px) {
+      .button10 {
+        font-size: 150%;
+        padding: 15px 30px;
+        width: calc(100% - 40px);
+        /* 20px space on each side */
+      }
+
       #display {
         width: 320px;
         font-size: 40px;
@@ -191,24 +230,25 @@
         width: 320px;
         font-size: 25px;
       }
-
-      .button10 {
-        font-size: 150%;
-        padding: 15px 30px;
-      }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- HEADER BUTTON (outside container, fixed at top) -->
+  <button class="button10" onclick="showWelcomeAlert()">🧮 WELCOME TO QUICKCALC</button>
+
+  <!-- MAIN CONTAINER -->
   <div class="container">
 
-    <button class="button10" onclick="showWelcomeAlert()">WELCOME TO QUICKCALC</button>
-
+    <!-- CALCULATOR BOX -->
     <div class="calculator-container">
 
+      <!-- DISPLAY SCREEN -->
       <div id="display">0</div>
 
+      <!-- ROW 1: 1 2 3 + -->
       <div class="row">
         <button class="button1" onclick="pressButton('1')">1</button>
         <button class="button1" onclick="pressButton('2')">2</button>
@@ -216,6 +256,7 @@
         <button class="button2" onclick="pressButton('+')">+</button>
       </div>
 
+      <!-- ROW 2: 4 5 6 - -->
       <div class="row">
         <button class="button1" onclick="pressButton('4')">4</button>
         <button class="button1" onclick="pressButton('5')">5</button>
@@ -223,6 +264,7 @@
         <button class="button2" onclick="pressButton('-')">-</button>
       </div>
 
+      <!-- ROW 3: 7 8 9 * -->
       <div class="row">
         <button class="button1" onclick="pressButton('7')">7</button>
         <button class="button1" onclick="pressButton('8')">8</button>
@@ -230,6 +272,7 @@
         <button class="button2" onclick="pressButton('*')">*</button>
       </div>
 
+      <!-- ROW 4: 0 . / = -->
       <div class="row">
         <button class="button1" onclick="pressButton('0')">0</button>
         <button class="button1" onclick="pressButton('.')">.</button>
@@ -237,6 +280,7 @@
         <button class="button2" onclick="calculate()">=</button>
       </div>
 
+      <!-- CLEAR BUTTON -->
       <div class="row">
         <button class="button1 clear-btn" onclick="clearCalc()">clear</button>
       </div>
@@ -245,31 +289,53 @@
   </div>
 
   <script>
+    // stores what the user is typing
     let calculation = '';
 
-    function showWelcomeAlert() { alert("Welcome! Ready to calculate!"); }
+    // shows welcome message when header is clicked
+    function showWelcomeAlert() {
+      alert("Welcome to QuickCalc! Start calculating!");
+    }
 
-    function updateDisplay() { document.getElementById('display').innerText = calculation || '0'; }
+    // updates what shows on the display screen
+    function updateDisplay() {
+      document.getElementById('display').innerText = calculation || '0';
+    }
 
-    function pressButton(value) { calculation += value; updateDisplay(); }
-
-    function calculate() {
-      try { calculation = eval(calculation); calculation = parseFloat(calculation.toFixed(10)); }
-      catch { calculation = 'Error'; }
+    // adds number or operator to calculation
+    function pressButton(value) {
+      calculation += value;
       updateDisplay();
     }
 
-    function clearCalc() { calculation = ''; updateDisplay(); }
+    // calculates the final result
+    function calculate() {
+      try {
+        calculation = eval(calculation);
+        calculation = parseFloat(calculation.toFixed(10));
+      } catch {
+        calculation = 'Error';
+      }
+      updateDisplay();
+    }
 
+    // clears everything and resets to 0
+    function clearCalc() {
+      calculation = '';
+      updateDisplay();
+    }
+
+    // keyboard support
     document.addEventListener('keydown', function (event) {
       const key = event.key;
-      if ('0123456789+-*/.'.includes(key)) calculation += key;
-      if (key === 'Enter') calculate();
-      if (key === 'Backspace') calculation = calculation.slice(0, -1);
-      if (key.toLowerCase() === 'c') clearCalc();
+      if ('0123456789+-*/.'.includes(key)) calculation += key; // type numbers/operators
+      if (key === 'Enter') calculate();                         // Enter = equals
+      if (key === 'Backspace') calculation = calculation.slice(0, -1); // delete last character
+      if (key.toLowerCase() === 'c') clearCalc();              // C key = clear
       updateDisplay();
     });
   </script>
+
 </body>
 
 </html>
