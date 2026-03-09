@@ -28,29 +28,19 @@
 
     /* --- HEADER BUTTON (fixed at top of page) --- */
     .button10 {
-      position: fixed;
-      /* sticks to top of page */
-      top: 3px;
-      /* space from very top */
-      left: 50%;
-      /* start from center */
-      transform: translateX(-50%);
-      /* truly center it */
-      width: calc(100% - 40px);
-      /* full width with 20px space on each side */
-      border: 2px dashed white;
-      border-radius: 10px;
-      background-color: rgb(36, 24, 34);
-      color: white;
-      font-size: 150%;
-      font-weight: bolder;
-      padding: 15px 30px;
-      cursor: pointer;
-      text-align: center;
-      z-index: 999;
-      /* stays on top of everything */
-    }
-
+  display: block;
+  width: calc(100% - 40px);
+  margin: 10px auto 20px auto;
+  border: 2px dashed white;
+  border-radius: 10px;
+  background-color: rgb(36, 24, 34);
+  color: white;
+  font-size: 150%;
+  font-weight: bolder;
+  padding: 15px 30px;
+  cursor: pointer;
+  text-align: center;
+}
     /* --- HEADER BUTTON HOVER EFFECT --- */
     .button10:hover {
       box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
