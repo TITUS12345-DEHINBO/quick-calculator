@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickCalc</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url("https://cdn.wallpapersafari.com/56/61/p8bDwL.jpg");
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .calculator-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 3px dashed rgb(90, 80, 80);
+      border-radius: 15px;
+      padding: 10px;
+      background-color: rgb(17, 15, 19);
+    }
+
+    .button10 {
+      border: 2px dashed white;
+      border-radius: 30px;
+      background-color: rgb(36, 24, 34);
+      color: white;
+      font-size: 150%;
+      font-weight: bolder;
+      padding: 15px 30px;
+      margin: 0 0 20px 0;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      text-align: center;
+    }
+
+    .button10:hover {
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    }
+
+    #display {
+      width: 320px;
+      height: 80px;
+      background-color: rgb(124, 116, 116);
+      color: white;
+      font-size: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .button1 {
+      border: none;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      margin: 3px;
+      background-color: rgb(97, 97, 104);
+      color: white;
+      font-size: 300%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .button2 {
+      border: none;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      margin: 3px;
+      background-color: rgb(173, 48, 48);
+      color: white;
+      font-size: 300%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .clear-btn {
+      width: 320px;
+      border-radius: 10px;
+      font-size: 25px;
+      background-color: rgb(97, 97, 104);
+      margin-top: 5px;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    button:hover {
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 360px) {
+      #display {
+        width: 90%;
+        font-size: 6vw;
+      }
+
+      .button1,
+      .button2 {
+        width: 15vw;
+        height: 15vw;
+        font-size: 4vw;
+      }
+
+      .clear-btn {
+        width: 90%;
+        font-size: 4vw;
+      }
+
+      .button10 {
+        font-size: 4vw;
+        padding: 12px 20px;
+      }
+    }
+
+    @media (min-width: 361px) and (max-width: 768px) {
+      #display {
+        width: 90%;
+        font-size: 8vw;
+      }
+
+      .button1,
+      .button2 {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+      }
+
+      .clear-btn {
+        width: 90%;
+        font-size: 20px;
+      }
+
+      .button10 {
+        font-size: 5vw;
+        padding: 15px 25px;
+      }
+    }
+
+    @media (min-width: 769px) {
+      #display {
+        width: 320px;
+        font-size: 40px;
+      }
+
+      .button1,
+      .button2 {
+        width: 70px;
+        height: 70px;
+        font-size: 300%;
+      }
+
+      .clear-btn {
+        width: 320px;
+        font-size: 25px;
+      }
+
+      .button10 {
+        font-size: 150%;
+        padding: 15px 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <button class="button10" onclick="showWelcomeAlert()">WELCOME TO QUICKCALC</button>
+
+    <div class="calculator-container">
+
+      <div id="display">0</div>
+
+      <div class="row">
+        <button class="button1" onclick="pressButton('1')">1</button>
+        <button class="button1" onclick="pressButton('2')">2</button>
+        <button class="button1" onclick="pressButton('3')">3</button>
+        <button class="button2" onclick="pressButton('+')">+</button>
+      </div>
+
+      <div class="row">
+        <button class="button1" onclick="pressButton('4')">4</button>
+        <button class="button1" onclick="pressButton('5')">5</button>
+        <button class="button1" onclick="pressButton('6')">6</button>
+        <button class="button2" onclick="pressButton('-')">-</button>
+      </div>
+
+      <div class="row">
+        <button class="button1" onclick="pressButton('7')">7</button>
+        <button class="button1" onclick="pressButton('8')">8</button>
+        <button class="button1" onclick="pressButton('9')">9</button>
+        <button class="button2" onclick="pressButton('*')">*</button>
+      </div>
+
+      <div class="row">
+        <button class="button1" onclick="pressButton('0')">0</button>
+        <button class="button1" onclick="pressButton('.')">.</button>
+        <button class="button1" onclick="pressButton('/')">/</button>
+        <button class="button2" onclick="calculate()">=</button>
+      </div>
+
+      <div class="row">
+        <button class="button1 clear-btn" onclick="clearCalc()">clear</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let calculation = '';
+
+    function showWelcomeAlert() { alert("Welcome! Ready to calculate!"); }
+
+    function updateDisplay() { document.getElementById('display').innerText = calculation || '0'; }
+
+    function pressButton(value) { calculation += value; updateDisplay(); }
+
+    function calculate() {
+      try { calculation = eval(calculation); calculation = parseFloat(calculation.toFixed(10)); }
+      catch { calculation = 'Error'; }
+      updateDisplay();
+    }
+
+    function clearCalc() { calculation = ''; updateDisplay(); }
+
+    document.addEventListener('keydown', function (event) {
+      const key = event.key;
+      if ('0123456789+-*/.'.includes(key)) calculation += key;
+      if (key === 'Enter') calculate();
+      if (key === 'Backspace') calculation = calculation.slice(0, -1);
+      if (key.toLowerCase() === 'c') clearCalc();
+      updateDisplay();
+    });
+  </script>
+</body>
+
+</html>
